@@ -66,7 +66,10 @@ class trainer:
                 for i  in range(config.n_gpu):
                     gpus.append(i)
                 self.G = torch.nn.DataParallel(self.G, device_ids=gpus).cuda()
-                self.D = torch.nn.DataParallel(self.D, device_ids=gpus).cuda()  
+                self.D = torch.nn.DataParallel(self.D, device_ids=gpus).cuda()
+        else:
+            self.G = torch.nn.DataParallel(self.G)
+            self.D = torch.nn.DataParallel(self.D)
 
         
         # define tensors, ship model to cuda, and get dataloader.
